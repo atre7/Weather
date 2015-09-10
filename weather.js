@@ -111,64 +111,87 @@ $(function() { // jQuery
     var url = "http://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&units=" + units + "&APPID=ba7b81140fa7455096e194fe94222d86";
     $.getJSON(url, function(w) {
       var windDeg = w.wind.deg ;
+
       console.log(w);
       console.log("icon id : " + w.weather[0].icon);
       console.log("id : " + w.weather[0].id);
-      getIcon(w.weather[0].id);
+
       console.log("wind deg " + w.wind.deg + " speed " + w.wind.speed);
       console.log(status + " " + w.name);
       console.log(status + " " + w.main.temp);
+      $('#iconT')
+      $('#time').text(new Date(w.dt * 1000).toLocaleDateString("sk-sk", options)); // milisec to sec
       $('#temp').text(w.main.temp);
-      $('#city').text(w.name);
-      $('#icon').find("img:first-child").remove();
-      $('#icon')
-        .prepend("<img src='http://openweathermap.org/img/w/" + w.weather[0].icon + ".png'>");
       if (units === "metric") {
         $('#temp').append("<i class='wi wi-celsius'></i>");
       } else {
         $('#temp').append("<i class='wi wi-fahrenheit'></i>");
       }
-      $('#temp').prepend("Temperature ");
-      $('#city').prepend("City : ");
-      if (w.main.temp > 40) {
-        $('body').css("background", "url('mac.jpg')");
-      } else {
-        $('body').css("background", "url('coffe.jpg')");
+      $('#city').text(w.name);
+      $('#descW').text(w.weather[0].description);
+      $('#icon1').removeClass();
+      $('#icon1').addClass(getIcon(w.weather[0].id));
+      // wind
+      $('#icon2').removeClass();
+      $('#icon2').addClass("wi wi-wind towards-" + windDeg + "-deg fi-fw");
+      $('#wind').text(w.wind.speed);
+      // humidity
+      $('#humidity').text(w.main.humidity);
+      // background
+      /*  if (w.main.temp > 40) {
+          $('body').css("background", "url('mac.jpg')");
+        } else {
+          $('body').css("background", "url('coffe.jpg')");
 
-      }
+        }
+        */
       //wi-wind.towards-0-deg
       // <i class="wi wi-night-sleet fi-fw" style="font-size: 6em"></i>
       $('#windIcon').append("<i class='wi wi-wind towards-" + windDeg + "-deg fi-fw' style='font-size: 8em'></i>");
     });
   }
+  // time
+  var options = {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    second: 'numeric',
+    ur12: false
+  };
+
+
+
   function getIcon(id) {
     switch (id) {
       case 800 : console.log("800");
-        return "<i class='wi wi-day-sunny'></i>";
+        return 'wi wi-day-sunny';
         break;
       case 801 : console.log("801");
-        return "<i class='wi wi-day-cloudy'></i>";
+        return 'wi wi-day-cloudy';
         break;
       case 802 : console.log("802");
-        return "<i class='wi wi-cloudy'></i>";
+        return 'wi wi-cloudy';
         break;
       case 803 : console.log("803");
-        return "<i class='wi wi-cloudy-gusts'></i>";
+        return 'wi wi-cloudy-gusts';
         break;
       case 521 : console.log("521");
-        return "<i class='wi wi-showers'></i>";
+        return 'wi wi-showers';
         break;
       case 500 :
-        return "<i class='wi wi-rain'></i>";
+        return 'wi wi-rain';
         break;
       case 211 :
-        return "<i class='wi wi-thunderstorm'></i>";
+        return 'wi wi-thunderstorm';
         break;
       case 601 :
-        return "<i class='wi wi-snow'></i>";
+        return 'wi wi-snow';
         break;
       case 701 :
-        return "<i class='wi wi-fog'></i>";
+        return 'wi wi-fog';
         break;
     }
   }
