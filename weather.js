@@ -157,7 +157,7 @@ $(function() { // jQuery
       }
       if (w.weather[0].main !== "Rain") {
         console.log("ne rain bck");
-        $('#wBackground').css("background", "url('sun.jpg')")
+        $('#wBackground').css("background", "url('sun.jpg') no-repet center")
       }
 
       $('#icon1').removeClass();
