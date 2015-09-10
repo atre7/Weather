@@ -153,11 +153,11 @@ $(function() { // jQuery
       console.log(typeof w.weather[0].main);
       if (w.weather[0].main === "Rain") {
         console.log("Rain bck");
-        $('#wBackground').css("background", "url('sunClouds.jpg')")
+        $('#wBackground').css("background", "url('sunClouds.jpg') no-repeat center center");
       }
       if (w.weather[0].main !== "Rain") {
         console.log("ne rain bck");
-        $('#wBackground').css("background", "url('sun.jpg') no-repet center")
+        $('#wBackground').css("background", "url('sun.jpg') no-repeat center center");
       }
 
       $('#icon1').removeClass();
