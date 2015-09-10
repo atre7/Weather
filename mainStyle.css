@@ -1,23 +1,38 @@
-
+/*
+* {
+  outline: 1px solid black;
+}
+*/
 body,
 html {
   margin : 0 auto;
+
 }
 
 body {
-  width : 600px;
 
+  width: 100%;
+background-color: pink;
+}
+container {
+  width: auto;
+}
+.row {
+  text-align: center;
 }
 h1 {
-  font-size: 5em;
+  font-size: 60px;
 }
 
 #temp {
-  font-size: 4em;
+  font-size: 50px;
+}
+#city {
+  font-size: 40px;
 }
 
 i {
-  font-size: 1em;
+  font-size: 70px;
 }
 #fixIcon {
   color : blue;
