@@ -1,4 +1,18 @@
 $(function() { // jQuery
+  var showTime = 0;
+  /*  var showClock = setInterval(function() {
+      $('#iconT').removeClass();
+      $('#iconT').addClass("wi wi-time-" + showTime);
+      showTime++;
+    }, 100);
+
+    if (showTime > 12) {
+      getLocation();
+      clearInterval(showClock);
+
+    }
+  */
+
   var units = "metric";
   // position IP
   //locationIP();
@@ -119,7 +133,12 @@ $(function() { // jQuery
       console.log("wind deg " + w.wind.deg + " speed " + w.wind.speed);
       console.log(status + " " + w.name);
       console.log(status + " " + w.main.temp);
-      $('#iconT')
+      $('#iconT').removeClass();
+      var t12 = new Date(w.dt).getHours()
+      if (new Date(w.dt).getHours() > 12) {
+        t12 = new Date(w.dt).getHours() - 12;
+      }
+      $('#iconT').addClass("wi wi-time-" + t12);
       $('#time').text(new Date(w.dt * 1000).toLocaleDateString("sk-sk", options)); // milisec to sec
       $('#temp').text(w.main.temp);
       if (units === "metric") {
@@ -134,9 +153,9 @@ $(function() { // jQuery
       // wind
       $('#icon2').removeClass();
       $('#icon2').addClass("wi wi-wind towards-" + windDeg + "-deg fi-fw");
-      $('#wind').text(w.wind.speed);
+      $('#wind').text(w.wind.speed + " km/h");
       // humidity
-      $('#humidity').text(w.main.humidity);
+      $('#humidity').text(w.main.humidity + " %");
       // background
       /*  if (w.main.temp > 40) {
           $('body').css("background", "url('mac.jpg')");
@@ -145,20 +164,17 @@ $(function() { // jQuery
 
         }
         */
-      //wi-wind.towards-0-deg
-      // <i class="wi wi-night-sleet fi-fw" style="font-size: 6em"></i>
-      $('#windIcon').append("<i class='wi wi-wind towards-" + windDeg + "-deg fi-fw' style='font-size: 8em'></i>");
     });
   }
   // time
   var options = {
     weekday: 'long',
-    year: 'numeric',
+
     month: 'long',
     day: 'numeric',
     hour: 'numeric',
     minute: 'numeric',
-    second: 'numeric',
+
     ur12: false
   };
 
