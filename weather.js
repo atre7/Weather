@@ -134,10 +134,12 @@ $(function() { // jQuery
       console.log(status + " " + w.name);
       console.log(status + " " + w.main.temp);
       $('#iconT').removeClass();
-      var t12 = new Date(w.dt).getHours()
-      if (new Date(w.dt).getHours() > 12) {
-        t12 = new Date(w.dt).getHours() - 12;
+      var t12 = new Date().getHours();
+      if (new Date().getHours() > 12) {
+        t12 = new Date().getHours() - 12;
       }
+      console.log(new Date().getHours());
+      console.log("t12 " + t12);
       $('#iconT').addClass("wi wi-time-" + t12);
       $('#time').text(new Date(w.dt * 1000).toLocaleDateString("sk-sk", options)); // milisec to sec
       $('#temp').text(w.main.temp);
