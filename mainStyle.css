@@ -1,0 +1,25 @@
+
+body,
+html {
+  margin : 0 auto;
+}
+
+body {
+  width : 600px;
+
+}
+h1 {
+  font-size: 5em;
+}
+
+#temp {
+  font-size: 4em;
+}
+
+i {
+  font-size: 1em;
+}
+#fixIcon {
+  color : pink;
+  letter-spacing: 1em;
+}
