@@ -128,7 +128,7 @@ $(function() { // jQuery
         $('#temp').append("<i class='wi wi-fahrenheit'></i>");
       }
       $('#city').text(w.name);
-      $('#descW').text(w.weather[0].description);
+      $('#descW').text(w.weather[0].main);
       $('#icon1').removeClass();
       $('#icon1').addClass(getIcon(w.weather[0].id));
       // wind
@@ -182,6 +182,18 @@ $(function() { // jQuery
         return 'wi wi-showers';
         break;
       case 500 :
+        return 'wi wi-rain';
+        break;
+      case 501 :
+        return 'wi wi-rain';
+        break;
+      case 502 :
+        return 'wi wi-rain';
+        break;
+      case 503 :
+        return 'wi wi-rain';
+        break;
+      case 504 :
         return 'wi wi-rain';
         break;
       case 211 :
