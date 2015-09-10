@@ -10,7 +10,7 @@ html {
 }
 
 body {
-
+font-family: 'Indie Flower', cursive;
   width: 100%;
 background-color: pink;
 }
@@ -19,12 +19,16 @@ container {
 }
 .row {
   text-align: center;
+  border: 3px solid white;
 }
 h1 {
-  font-size: 60px;
+  font-size: 3em;
+  font-family: 'Indie Flower', cursive;
 }
-
-#temp {
+#time {
+  font-size: 30px;
+}
+#temp,#wind,#humidity {
   font-size: 50px;
 }
 #city {
