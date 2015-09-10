@@ -13,7 +13,7 @@ body {
 font-family: 'Indie Flower', cursive;
 text-shadow: 2px 2px grey;
   width: 100%;
-background-color: #ff4dff;
+background-color: white;
 
 }
 container {
@@ -23,7 +23,8 @@ container {
   padding: 15px;
   text-align: center;
   border: 3px solid white;
-  border-radius: 5px;
+  border-radius: 10px;
+  background-color: #ff4dff;
 }
 h1 {
   font-size: 3em;
@@ -46,8 +47,8 @@ i {
   font-size: 70px;
 }
 #wBackground {
-  background: url("sun.jpg");
-  background: url("sunClouds.jpg");
+
+  background: url("sunClouds.jpg") no-repeat center center;
 }
 
 
