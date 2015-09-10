@@ -148,6 +148,16 @@ $(function() { // jQuery
       }
       $('#city').text(w.name);
       $('#descW').text(w.weather[0].main);
+      console.log(typeof w.weather[0].main);
+      if (w.weather[0].main === "Rain") {
+        console.log("Rain bck");
+        $('#wBackground').css("background", "url('sunClouds.jpg')")
+      }
+      if (w.weather[0].main !== "Rain") {
+        console.log("ne rain bck");
+        $('#wBackground').css("background", "url('sun.jpg')")
+      }
+
       $('#icon1').removeClass();
       $('#icon1').addClass(getIcon(w.weather[0].id));
       // wind
