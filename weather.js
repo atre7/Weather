@@ -105,7 +105,7 @@ $(function() { // jQuery
     lon = latlon[1];
 
     //  var units = "metric";
-    var url = "http://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&units=" + units + "&APPID=ba7b81140fa7455096e194fe94222d86";
+    var url = "http://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&units=" + units + "&APPID=37c56062e5723ab31907e1f5fa58f823";
     $.getJSON(url, function(w) {
       var windDeg = w.wind.deg ;
 
