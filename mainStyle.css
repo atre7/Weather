@@ -13,18 +13,19 @@ body {
 font-family: 'Indie Flower', cursive;
 text-shadow: 2px 2px grey;
   width: 100%;
-background-color: white;
+background: url("Sun2Res.jpg") no-repeat center center fixed;
 
 }
 container {
   width: auto;
 }
 .row {
+  margin: 15px ;
   padding: 15px;
   text-align: center;
   border: 3px solid white;
   border-radius: 10px;
-  background-color: #ff4dff;
+  background-color: rgba(255, 77, 255, 0.5);
 }
 h1 {
   font-size: 3em;
@@ -46,13 +47,18 @@ h1 {
 i {
   font-size: 70px;
 }
-#wBackground {
+#wBackgroundX {
 
-  background: url("sunClouds.jpg") no-repeat center center;
+  background: url("sunCloudsRes.jpg") no-repeat center center;
 }
-
-
-#fixIcon {
-  color : blue;
-  letter-spacing: 1em;
+#fx {
+  display: block;
+    margin: auto;
+    width: 100%;
+  opacity: 0.6;
+  font-size: 2em ;
+  letter-spacing: 3px;
+}
+#fc:hover , #fc:focus {
+  opacity: 1;
 }
