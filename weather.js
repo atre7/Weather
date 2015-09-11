@@ -20,7 +20,7 @@ $(function() { // jQuery
   // c = (f-32) *5/9
   // f = c* 9/5 +32
   function locationIP() {
-    // atom coment
+
     $.get("http://ipinfo.io", function(location) {
 
       console.log("IP pos " + location.loc);
@@ -57,50 +57,33 @@ $(function() { // jQuery
       case error.PERMISSION_DENIED:
         $('#city').text("User denied the request for Geolocation. Position IP is used.");
         locationIP();
-
         break;
       case error.POSITION_UNAVAILABLE:
         $('#city').text("Location information is unavailable.");
-
+        locationIP();
         break;
       case error.TIMEOUT:
         $('#city').text("The request to get user location timed out.");
-
+        locationIP();
         break;
       case error.UNKNOWN_ERROR:
         $('#city').text("An unknown error occurred.");
-
+        locationIP();
         break;
     }
   }
-  // &APPID=ba7b81140fa7455096e194fe94222d86
-  // weather city
-  //weatherByCity();
-  function weatherByCity() {
-    $.getJSON("http://api.openweathermap.org/data/2.5/weather?q=Bratislava&units=metric&APPID=ba7b81140fa7455096e194fe94222d86", function(pocasie) {
-      console.log(pocasie);
-      console.log(pocasie.name);
-      console.log(pocasie.main.temp);
-      $('#mesto').text("mesto : " + pocasie.name);
-      $('#teplota').text("teplota : " + pocasie.main.temp);
-      $('#pocasie').text("pocasie : " + pocasie.weather[0].description);
-      $('#cas').text("cas : " + new Date(pocasie.dt * 1000).toLocaleDateString("sk-sk", options3)); // milisec to sec
-      $('#cas2').text("cas2 : " + localDate(pocasie.dt * 1000));
-    })
 
-
-
-    var options3 = {
-      weekday: 'long',
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-      hour: 'numeric',
-      minute: 'numeric',
-      second: 'numeric',
-      ur12: false
-    }
+  var options3 = {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    second: 'numeric',
+    ur12: false
   }
+
   function localDate(d) {
     var dateobj = new Date(d);
     function pad(n) {
@@ -140,8 +123,10 @@ $(function() { // jQuery
       }
       console.log(new Date().getHours());
       console.log("t12 " + t12);
+
       $('#iconT').addClass("wi wi-time-" + t12);
       $('#time').text(new Date(w.dt * 1000).toLocaleDateString("sk-sk", options)); // milisec to sec
+
       $('#temp').text(w.main.temp);
       if (units === "metric") {
         $('#temp').append("<i class='wi wi-celsius'></i>");
@@ -149,15 +134,16 @@ $(function() { // jQuery
         $('#temp').append("<i class='wi wi-fahrenheit'></i>");
       }
       $('#city').text(w.name);
-      $('#descW').text(w.weather[0].main);
-      console.log(typeof w.weather[0].main);
+
+      $('#mainW').text(w.weather[0].main);
+      $('#descW').text(w.weather[0].description);
+
       if (w.weather[0].main === "Rain") {
-        console.log("Rain bck");
-        $('#wBackground').css("background", "url('sunClouds.jpg') no-repeat center center");
-      }
-      if (w.weather[0].main !== "Rain") {
-        console.log("ne rain bck");
-        $('#wBackground').css("background", "url('sun.jpg') no-repeat center center");
+        $('#wBackground').css("background", "url('RainRes.jpg') no-repeat center center");
+      } else if (w.weather[0].main === "Clouds") {
+        $('#wBackground').css("background", "url('sunCloudsRes.jpg') no-repeat center center");
+      } else {
+        $('#wBackground').css("background", "url('Sun2Res.jpg') no-repeat center center");
       }
 
       $('#icon1').removeClass();
@@ -165,17 +151,10 @@ $(function() { // jQuery
       // wind
       $('#icon2').removeClass();
       $('#icon2').addClass("wi wi-wind towards-" + windDeg + "-deg fi-fw");
-      $('#wind').text(w.wind.speed + " km/h");
+      $('#wind').text(w.wind.speed + " m/s");
       // humidity
       $('#humidity').text(w.main.humidity + " %");
-      // background
-      /*  if (w.main.temp > 40) {
-          $('body').css("background", "url('mac.jpg')");
-        } else {
-          $('body').css("background", "url('coffe.jpg')");
 
-        }
-        */
     });
   }
   // time
@@ -206,6 +185,9 @@ $(function() { // jQuery
       case 803 : console.log("803");
         return 'wi wi-cloudy-gusts';
         break;
+      case 804 : console.log("803");
+        return 'wi wi-cloudy-gusts';
+        break;
       case 521 : console.log("521");
         return 'wi wi-showers';
         break;
@@ -233,6 +215,7 @@ $(function() { // jQuery
       case 701 :
         return 'wi wi-fog';
         break;
+      default : return 'wi wi-day-fog';
     }
   }
 
