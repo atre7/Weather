@@ -136,6 +136,7 @@ $(function() { // jQuery
       $('#city').text(w.name);
 
       $('#mainW').text(w.weather[0].main);
+      console.log("main " + w.weather[0].main);
       $('#descW').text(w.weather[0].description);
 
       if (w.weather[0].main === "Rain") {
