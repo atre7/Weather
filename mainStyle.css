@@ -63,3 +63,8 @@ i {
 #fc:hover , #fc:focus {
   opacity: 1;
 }
+
+#mapholder {
+  width: 100%;
+  height: auto;
+}
