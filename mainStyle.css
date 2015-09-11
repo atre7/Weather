@@ -17,8 +17,8 @@ text-shadow: 2px 2px grey;
 background: url("Sun2heightUp.jpg") no-repeat  center center  ;
 
 }
-container {
-  width: auto;
+.container {
+max-width: 670px !important;
 }
 .row {
   margin: 15px ;
