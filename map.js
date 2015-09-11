@@ -8,7 +8,7 @@ $(function() {
     getLocation();
   })
 
-  $('#location').click(function() {
+  $('#fc').click(function() {
     console.log("click on btn ");
     getLocation();
   })
