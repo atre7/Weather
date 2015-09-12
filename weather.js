@@ -152,7 +152,12 @@ $(function() { // jQuery
       // wind
       $('#icon2').removeClass();
       $('#icon2').addClass("wi wi-wind towards-" + windDeg + "-deg fi-fw");
-      $('#wind').text(w.wind.speed + " m/s");
+      $('#wind').text(w.wind.speed);
+      if (units === "metric") {
+        $('#wind').append(" m/s");
+      } else {
+        $('#wind').append(" mph");
+      }
       // humidity
       $('#humidity').text(w.main.humidity + " %");
 
