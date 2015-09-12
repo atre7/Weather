@@ -42,7 +42,7 @@ $(function() {
 
     var myOptions = {
       center: latlon,
-      zoom: 14,
+      zoom: 8,
       mapTypeId: google.maps.MapTypeId.ROADMAP,
       mapTypeControl: false,
       navigationControlOptions: {
@@ -56,7 +56,11 @@ $(function() {
       map: map,
       title: "You are here!"
     });
+
+
   }
+
+
 
   function showError(error) {
     switch (error.code) {
