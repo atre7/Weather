@@ -12,7 +12,7 @@ $(function() { // jQuery
 
     }
   */
-
+  var storePosition = null;
   var units = "metric";
   // position IP
   //locationIP();
@@ -32,6 +32,14 @@ $(function() { // jQuery
 
 
   }
+
+  function storeAndGo(pos) {
+    if (storePosition === null) {
+      storePosition = pos ;
+    }
+    console.log("store position " + storePosition);
+    showPosition(pos);
+  }
   // position navigator
   getLocation();
 
@@ -39,7 +47,7 @@ $(function() { // jQuery
     console.log("units " + units);
     if (navigator.geolocation) {
       //  navigator.geolocation.watchPosition(showPosition, showError); getCurrentPosition
-      navigator.geolocation.getCurrentPosition(showPosition, showError);
+      navigator.geolocation.getCurrentPosition(storeAndGo, showError);
     } else {
       $('#city').text("Geolocation is not supported by this browser.");
     }
@@ -160,7 +168,7 @@ $(function() { // jQuery
       }
       // humidity
       $('#humidity').text(w.main.humidity + " %");
-
+      $('#sunrise').text(new Date(w.sys.sunrise * 1000).toLocaleDateString("sk-sk", options2));
     });
   }
   // time
@@ -172,6 +180,13 @@ $(function() { // jQuery
     hour: 'numeric',
     minute: 'numeric',
 
+    ur12: false
+  };
+  var options2 = {
+    weekday: 'long',
+    hour: 'numeric',
+    minute: 'numeric',
+    second: 'numeric',
     ur12: false
   };
 
@@ -230,10 +245,12 @@ $(function() { // jQuery
     console.log("1" + units);
     if (units === "metric") {
       units = "imperial";
+      console.log(storePosition);
       getLocation();
       console.log("2" + units);
     } else {
       units = "metric";
+      console.log(storePosition);
       getLocation();
       console.log("2" + units);
     }

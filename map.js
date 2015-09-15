@@ -1,16 +1,19 @@
 $(function() {
   var retVal ;
+  var iploc;
   var x = document.getElementById("demo");
   getLocation();
 
   $(window).resize(function() {
     console.log("resize");
-    getLocation();
+    //  getLocation();
+    showPosition(retVal);
   })
 
   $('#fc').click(function() {
     console.log("click on btn ");
-    getLocation();
+    //  getLocation();
+    showPosition(retVal);
   })
 
   function getLocation() {
@@ -23,12 +26,14 @@ $(function() {
 
 
   function showPosition(position, posIP) {
+
+    retVal = position;
     if (position !== null) {
       lat = position.coords.latitude;
       lon = position.coords.longitude;
     }
-    if (position === null) {
-      console.log("ip lat lon pouzil");
+    if (position === null && posIP !== undefined) {
+      console.log("ip lat lon pouzil" + posIP);
       lat = posIP.split(",")[0];
       lon = posIP.split(",")[1];
     }
@@ -86,7 +91,7 @@ $(function() {
       console.log("IP pos " + location.loc);
       // davalo null    console.log(location.city);
       console.log(location.country);
-      retVal = location.loc;
+      iploc = location.loc;
       console.log("IP: " + retVal);
       //  weatherByPos(location.loc, " IP position", units);
       showPosition(null, location.loc);
