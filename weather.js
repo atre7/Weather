@@ -133,6 +133,7 @@ $(function() { // jQuery
       console.log("t12 " + t12);
 
       $('#iconT').addClass("wi wi-time-" + t12);
+      $('#time').find("i").remove();
       $('#time').text(new Date(w.dt * 1000).toLocaleDateString("sk-sk", options)); // milisec to sec
 
       $('#temp').text(w.main.temp);
@@ -148,7 +149,7 @@ $(function() { // jQuery
       $('#descW').text(w.weather[0].description);
 
       if (w.weather[0].main === "Rain") {
-        $('#wBackground').css("background", "url('RainRes.jpg') no-repeat center center");
+        $('#wBackground').css("background", "url('http://i.ytimg.com/vi/Sv0LwXYAVVg/maxresdefault.jpg') no-repeat center center");
       } else if (w.weather[0].main === "Clouds") {
         $('#wBackground').css("background", "url('sunCloudsRes.jpg') no-repeat center center");
       } else {
