@@ -20,6 +20,8 @@ text-shadow: 2px 2px grey;
 background: url("Sun2heightUp2.jpg") no-repeat  center center  ;
 
 }
+
+}
 .container {
 max-width:960px !important;
 }
@@ -34,7 +36,6 @@ max-width:960px !important;
 h1 {
   font-size: 3em;
   font-family: 'Indie Flower', cursive;
-
 }
 
 #time {
@@ -46,16 +47,27 @@ h1 {
   font-size: 80px;
 }
 #temp,#wind,#humidity,#sunrise,#descW,#mainW {
-  font-size: 50px;
+  font-size: 40px;
 }
 #city {
   font-size: 40px;
   font-weight: bold;
   letter-spacing: 5px;
 }
+@media (min-width:600px){
+  #city {
+    font-size: 60px;
+    font-weight: bold;
+    letter-spacing: 10px;
+  }
+#descW {
+  font-size: 60px;
+}
+}
 #descW {
   letter-spacing: 4px;
 }
+
 i {
   font-size: 70px;
 }
