@@ -132,6 +132,7 @@ $(function() { // jQuery
       console.log(new Date().getHours());
       console.log("t12 " + t12);
 
+
       $('#iconT').addClass("wi wi-time-" + t12);
       $('#time').find("i").remove();
       $('#time').text(new Date(w.dt * 1000).toLocaleDateString("sk-sk", options)); // milisec to sec
