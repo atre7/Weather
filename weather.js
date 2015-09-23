@@ -171,6 +171,7 @@ $(function() { // jQuery
       // humidity
       $('#humidity').text(w.main.humidity + " %");
       $('#sunrise').text(new Date(w.sys.sunrise * 1000).toLocaleDateString("sk-sk", options2));
+      $('#sunset').text(new Date(w.sys.sunset * 1000).toLocaleDateString("sk-sk", options2));
     });
   }
   // time
