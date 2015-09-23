@@ -1,5 +1,7 @@
 $(function() { // jQuery
   var showTime = 0;
+  var wbc = {}; // weather by city
+  var cod = 0;
   /*  var showClock = setInterval(function() {
       $('#iconT').removeClass();
       $('#iconT').addClass("wi wi-time-" + showTime);
@@ -28,8 +30,9 @@ $(function() { // jQuery
       console.log(location.country);
 
       weatherByPos(location.loc, " IP position", units);
-    }, "json");
 
+    }, "json");
+    console.log("cod na ip " + cod);
 
   }
 
@@ -102,6 +105,19 @@ $(function() { // jQuery
     return result;
   }
   // weather lat lon
+  // weather by city
+  //weatherByCity("Bratislava");
+  function weatherByCity(city) {
+    var url2 = "http://api.openweathermap.org/data/2.5/weather?q=" + city;
+
+    $.getJSON(url2, function(wx) {
+      console.log("weather by city " + city);
+      console.log(wx);;
+      showWeather(wx);
+    });
+
+  }
+
 
   //  weatherByPos();
   function weatherByPos(pos, status, units) {
@@ -112,67 +128,95 @@ $(function() { // jQuery
     lat = latlon[0];
     lon = latlon[1];
 
+
+    console.log("lat :" + lat);
+    console.log("lon :" + lon);
+
     //  var units = "metric";
     var url = "http://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&units=" + units + "&APPID=37c56062e5723ab31907e1f5fa58f823";
     $.getJSON(url, function(w) {
-      var windDeg = w.wind.deg ;
-
-      console.log(w);
-      console.log("icon id : " + w.weather[0].icon);
-      console.log("id : " + w.weather[0].id);
-
-      console.log("wind deg " + w.wind.deg + " speed " + w.wind.speed);
-      console.log(status + " " + w.name);
-      console.log(status + " " + w.main.temp);
-      $('#iconT').removeClass();
-      var t12 = new Date().getHours();
-      if (new Date().getHours() > 12) {
-        t12 = new Date().getHours() - 12;
-      }
-      console.log(new Date().getHours());
-      console.log("t12 " + t12);
-
-
-      $('#iconT').addClass("wi wi-time-" + t12);
-      $('#time').find("i").remove();
-      $('#time').text(new Date(w.dt * 1000).toLocaleDateString("sk-sk", options)); // milisec to sec
-
-      $('#temp').text(w.main.temp);
-      if (units === "metric") {
-        $('#temp').append("<i class='wi wi-celsius'></i>");
+      cod = w.cod ;
+      console.log(w.cod);
+      if (w.cod !== "404") {
+        showWeather(w);
       } else {
-        $('#temp').append("<i class='wi wi-fahrenheit'></i>");
-      }
-      $('#city').text(w.name);
+        $('#city').text("Location failed ");
 
-      $('#mainW').text(w.weather[0].main);
-      console.log("main " + w.weather[0].main);
-      $('#descW').text(w.weather[0].description);
-
-      if (w.weather[0].main === "Rain") {
-        $('#wBackground').css("background", "url('http://i.ytimg.com/vi/Sv0LwXYAVVg/maxresdefault.jpg') no-repeat center center");
-      } else if (w.weather[0].main === "Clouds") {
-        $('#wBackground').css("background", "url('sunCloudsRes.jpg') no-repeat center center");
-      } else {
-        $('#wBackground').css("background", "url('Sun2Res.jpg') no-repeat center center");
       }
 
-      $('#icon1').removeClass();
-      $('#icon1').addClass(getIcon(w.weather[0].id));
-      // wind
-      $('#icon2').removeClass();
-      $('#icon2').addClass("wi wi-wind towards-" + windDeg + "-deg fi-fw");
-      $('#wind').text(w.wind.speed);
-      if (units === "metric") {
-        $('#wind').append(" m/s");
-      } else {
-        $('#wind').append(" mph");
+
+    }).done(function() {
+      console.log("done");
+      console.log("cod " + cod);
+      if (cod === "404") {
+        var c = prompt("Enter your city", "Bratislava");
+        weatherByCity(c);
       }
-      // humidity
-      $('#humidity').text(w.main.humidity + " %");
-      $('#sunrise').text(new Date(w.sys.sunrise * 1000).toLocaleDateString("sk-sk", options2));
-      $('#sunset').text(new Date(w.sys.sunset * 1000).toLocaleDateString("sk-sk", options2));
     });
+
+  }
+
+  function showWeather(w) {
+    console.log(w);
+    console.log("cod " + w.cod);
+    console.log("msg " + w.message);
+
+    console.log("icon id : " + w.weather[0].icon);
+    console.log("id : " + w.weather[0].id);
+
+    console.log("wind deg " + w.wind.deg + " speed " + w.wind.speed);
+    console.log(status + " " + w.name);
+    console.log(status + " " + w.main.temp);
+    var windDeg = w.wind.deg ;
+    $('#iconT').removeClass();
+    var t12 = new Date().getHours();
+    if (new Date().getHours() > 12) {
+      t12 = new Date().getHours() - 12;
+    }
+    console.log(new Date().getHours());
+    console.log("t12 " + t12);
+
+
+    $('#iconT').addClass("wi wi-time-" + t12);
+    $('#time').find("i").remove();
+    $('#time').text(new Date(w.dt * 1000).toLocaleDateString("sk-sk", options)); // milisec to sec
+
+    $('#temp').text(w.main.temp);
+    if (units === "metric") {
+      $('#temp').append("<i class='wi wi-celsius'></i>");
+    } else {
+      $('#temp').append("<i class='wi wi-fahrenheit'></i>");
+    }
+    $('#city').text(w.name);
+
+    $('#mainW').text(w.weather[0].main);
+    console.log("main " + w.weather[0].main);
+    $('#descW').text(w.weather[0].description);
+
+    if (w.weather[0].main === "Rain") {
+      $('#wBackground').css("background", "url('http://i.ytimg.com/vi/Sv0LwXYAVVg/maxresdefault.jpg') no-repeat center center");
+    } else if (w.weather[0].main === "Clouds") {
+      $('#wBackground').css("background", "url('sunCloudsRes.jpg') no-repeat center center");
+    } else {
+      $('#wBackground').css("background", "url('Sun2Res.jpg') no-repeat center center");
+    }
+
+    $('#icon1').removeClass();
+    $('#icon1').addClass(getIcon(w.weather[0].id));
+    // wind
+    $('#icon2').removeClass();
+    $('#icon2').addClass("wi wi-wind towards-" + windDeg + "-deg fi-fw");
+    $('#wind').text(w.wind.speed);
+    if (units === "metric") {
+      $('#wind').append(" m/s");
+    } else {
+      $('#wind').append(" mph");
+    }
+    // humidity
+    $('#humidity').text(w.main.humidity + " %");
+    $('#sunrise').text(new Date(w.sys.sunrise * 1000).toLocaleDateString("sk-sk", options2));
+    $('#sunset').text(new Date(w.sys.sunset * 1000).toLocaleDateString("sk-sk", options2));
+
   }
   // time
   var options = {
