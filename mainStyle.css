@@ -46,7 +46,7 @@ h1 {
 #time>i {
   font-size: 80px;
 }
-#temp,#wind,#humidity,#sunrise,#descW,#mainW {
+#temp,#wind,#humidity,#sunrise,#sunset,#descW,#mainW {
   font-size: 40px;
 }
 #city {
