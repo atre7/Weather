@@ -132,6 +132,7 @@ $(function() { // jQuery
       console.log(new Date().getHours());
       console.log("t12 " + t12);
 
+
       $('#iconT').addClass("wi wi-time-" + t12);
       $('#time').find("i").remove();
       $('#time').text(new Date(w.dt * 1000).toLocaleDateString("sk-sk", options)); // milisec to sec
@@ -170,6 +171,7 @@ $(function() { // jQuery
       // humidity
       $('#humidity').text(w.main.humidity + " %");
       $('#sunrise').text(new Date(w.sys.sunrise * 1000).toLocaleDateString("sk-sk", options2));
+      $('#sunset').text(new Date(w.sys.sunset * 1000).toLocaleDateString("sk-sk", options2));
     });
   }
   // time
