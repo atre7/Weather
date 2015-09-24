@@ -3,30 +3,28 @@
   outline: 1px solid black;
 }
 */
-body,
-html {
-  margin : 0 auto;
 
+body, html {
+  margin: 0 auto;
+  padding: 0;
 }
 html {
   background-color: rgba(255, 77, 255, 0.5);
 }
-
 body {
-font-family: 'Indie Flower', cursive;
-text-shadow: 2px 2px grey;
+  font-family: 'Indie Flower', cursive;
+  text-shadow: 2px 2px grey;
   width: 100%;
   height: 100%;
-background: url("Sun2heightUp2.jpg") no-repeat  center center  ;
-
+  background: url("Sun2heightUp2.jpg") no-repeat center center;
 }
 
 }
 .container {
-max-width:960px !important;
+  max-width: 960px !important;
 }
 .row {
-  margin: 15px ;
+  margin: 15px;
   padding: 15px;
   text-align: center;
   border: 3px solid white;
@@ -37,7 +35,6 @@ h1 {
   font-size: 3em;
   font-family: 'Indie Flower', cursive;
 }
-
 #time {
   margin-top: 20px;
   margin-bottom: 10px;
@@ -46,7 +43,7 @@ h1 {
 #time>i {
   font-size: 80px;
 }
-#temp,#wind,#humidity,#sunrise,#sunset,#descW,#mainW {
+#temp, #tempX, #wind, #humidity, #sunrise, #sunset, #descW, #mainW {
   font-size: 40px;
 }
 #city {
@@ -54,39 +51,44 @@ h1 {
   font-weight: bold;
   letter-spacing: 5px;
 }
-@media (min-width:600px){
+@media (min-width:600px) {
   #city {
     font-size: 60px;
     font-weight: bold;
     letter-spacing: 10px;
   }
-#descW {
-  font-size: 60px;
-}
+  #descW {
+    font-size: 60px;
+  }
 }
 #descW {
   letter-spacing: 4px;
 }
-
 i {
   font-size: 70px;
 }
-#wBackgroundX {
+#temp>span {
+  /*display: inline-block;*/
 
+  font-size: 50px;
+}
+#temp>i {
+  font-size: 50px;
+}
+#wBackgroundX {
   background: url("sunCloudsRes.jpg") no-repeat center center;
 }
-#fx {
+#fc, #fcCalc {
   display: block;
-    margin: auto;
-    width: 100%;
+  margin: 10px auto;
+  width: 100%;
   opacity: 0.6;
-  font-size: 2em ;
+  font-size: 2em;
   letter-spacing: 3px;
 }
-#fc:hover , #fc:focus {
+#fc:hover, #fc:focus {
   opacity: 1;
 }
-
 #mapholder {
   width: 100%;
   height: auto;

@@ -1,130 +1,141 @@
 <!DOCTYPE html>
 <html lang="sk">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Weather</title>
-    <link rel="shortcut icon" href="hot-weather.png" >
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.5/css/weather-icons.min.css" >
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.5/css/weather-icons-wind.min.css" >
-    <link href='https://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="mainStyle.css">
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Weather</title>
+  <link rel="shortcut icon" href="hot-weather.png">
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.5/css/weather-icons.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.5/css/weather-icons-wind.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="mainStyle.css">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-  </head>
-  <body>
+</head>
 
-    <div class="container">
+<body>
 
-      <div class="row">
-        <div class="col-md-12">
-          <h1>Your Local Weather</h1>
-        </div>
+  <div class="container">
+
+    <div class="row">
+      <div class="col-md-12">
+        <h1>Your Local Weather</h1>
       </div>
-
-      <div class="row">
-        <div class="col-md-12">
-          <h2 id="city" >Bratislava</h2>
-        </div>
-      </div>
-
-      <div class="row">
-        <div  class="col-md-6">
-          <i id="iconT" class='wi wi-time-3'></i>
-        </div>
-        <div id="time" class="col-md-6">
-          <i class="fa fa-spinner fa-spin"></i>
-        </div>
-      </div>
-
-        <div class="row">
-          <div id="mainW" class="col-md-6">
-            weather
-          </div>
-          <div id="descW" class="col-md-6">
-            <i class="fa fa-spinner fa-spin"></i>
-          </div>
-        </div>
-
-      <div id="wBackground"class="row">
-        <div  class="col-md-6">
-          <i id="icon1" class='wi wi-day-sunny'></i>
-        </div>
-        <div id="temp" class="col-md-6">
-          <i class="fa fa-spinner fa-spin"></i>
-      </div>
-      </div>
-
-      <div class="row">
-        <div  class="col-md-6">
-            <i id="icon2" class="wi wi-day-sunny"></i>
-        </div>
-        <div id="wind" class="col-md-6">
-          <i class="fa fa-spinner fa-spin"></i>
-        </div>
-      </div>
-
-      <div class="row">
-        <div  class="col-md-6">
-          <i id="icon3" class="wi wi-humidity"></i>
-        </div>
-        <div id="humidity" class="col-md-6">
-          <i class="fa fa-spinner fa-spin"></i>
-        </div>
-      </div>
-
-      <div class="row">
-        <div  class="col-md-6">
-          <i id="iconSunrise" class="wi wi-sunrise"></i>
-        </div>
-        <div id="sunrise" class="col-md-6">
-          <i class="fa fa-spinner fa-spin"></i>
-        </div>
-      </div>
-
-      <div class="row">
-        <div  class="col-md-6">
-          <i id="iconSunset" class="wi wi-sunset"></i>
-        </div>
-        <div id="sunset" class="col-md-6">
-          <i class="fa fa-spinner fa-spin"></i>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-12">
-          <div id="fc" class="btn btn-lg btn-primary"><span>Fahrenheit/Celsius</span>  </div>
-        </div>
-      </div>
-
-      <div class="row" >
-        <div class="col-md-12" id="location">
-          <div id="mapholder">
-
-          </div>
-
-        </div>
-      </div>
-
     </div>
 
+    <div class="row">
+      <div class="col-md-12">
+        <h2 id="city">Bratislava</h2>
+      </div>
+    </div>
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+    <div class="row">
+      <div class="col-md-6">
+        <i id="iconT" class='wi wi-time-3'></i>
+      </div>
+      <div id="time" class="col-md-6">
+        <i class="fa fa-spinner fa-spin"></i>
+      </div>
+    </div>
 
-    <script src="map.js"></script>
-    <script src="weather.js" charset="utf-8"></script>
-  </body>
+    <div class="row">
+      <div id="mainW" class="col-md-6">
+        weather
+      </div>
+      <div id="descW" class="col-md-6">
+        <i class="fa fa-spinner fa-spin"></i>
+      </div>
+    </div>
+
+    <div id="wBackground" class="row">
+      <div class="col-md-6">
+        <i id="icon1" class='wi wi-day-sunny'></i>
+      </div>
+      <div id="temp" class="col-md-6">
+        <span></span>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <i id="icon2" class="wi wi-day-sunny"></i>
+      </div>
+      <div id="wind" class="col-md-6">
+        <i class="fa fa-spinner fa-spin"></i>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <i id="icon3" class="wi wi-humidity"></i>
+      </div>
+      <div id="humidity" class="col-md-6">
+        <i class="fa fa-spinner fa-spin"></i>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <i id="iconSunrise" class="wi wi-sunrise"></i>
+      </div>
+      <div id="sunrise" class="col-md-6">
+        <i class="fa fa-spinner fa-spin"></i>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <i id="iconSunset" class="wi wi-sunset"></i>
+      </div>
+      <div id="sunset" class="col-md-6">
+        <i class="fa fa-spinner fa-spin"></i>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div id="fc" class="btn btn-lg btn-primary">
+          <span>Metric / Imperial</span>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div id="fcCalc" class="btn btn-lg btn-primary">
+          <span>Fahrenheit / Celsius</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12" id="location">
+        <div id="mapholder">
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+
+  <script src="map.js"></script>
+  <script src="weather2.js" charset="utf-8"></script>
+</body>
+
 </html>
