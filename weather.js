@@ -2,6 +2,7 @@ $(function() { // jQuery
   var showTime = 0;
   var wbc = {}; // weather by city
   var cod = 0;
+  var geoW;
   /*  var showClock = setInterval(function() {
       $('#iconT').removeClass();
       $('#iconT').addClass("wi wi-time-" + showTime);
@@ -18,9 +19,17 @@ $(function() { // jQuery
   var units = "metric";
   // position IP
   //locationIP();
-
+  // F -> C recalcualte
   // c = (f-32) *5/9
   // f = c* 9/5 +32
+  function metricToImperial() {
+    // f = c* 9/5 +32
+  }
+
+  function imperialToMetric() {
+    // c = (f-32) *5/9
+  }
+
   function locationIP() {
 
     $.get("http://ipinfo.io", function(location) {
@@ -38,7 +47,7 @@ $(function() { // jQuery
 
   function storeAndGo(pos) {
     if (storePosition === null) {
-      storePosition = pos ;
+      storePosition = pos;
     }
     console.log("store position " + storePosition);
     showPosition(pos);
@@ -97,6 +106,7 @@ $(function() { // jQuery
 
   function localDate(d) {
     var dateobj = new Date(d);
+
     function pad(n) {
       return n < 10 ? "0" + n : n;
     }
@@ -118,7 +128,6 @@ $(function() { // jQuery
 
   }
 
-
   //  weatherByPos();
   function weatherByPos(pos, status, units) {
 
@@ -127,24 +136,18 @@ $(function() { // jQuery
     var latlon = pos.split(",");
     lat = latlon[0];
     lon = latlon[1];
-
-
     console.log("lat :" + lat);
     console.log("lon :" + lon);
-
     //  var units = "metric";
     var url = "http://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&units=" + units + "&APPID=37c56062e5723ab31907e1f5fa58f823";
-    $.getJSON(url, function(w) {
-      cod = w.cod ;
+    geoW = $.getJSON(url, function(w) {
+      cod = w.cod;
       console.log(w.cod);
       if (w.cod !== "404") {
         showWeather(w);
       } else {
         $('#city').text("Location failed ");
-
       }
-
-
     }).done(function() {
       console.log("done");
       console.log("cod " + cod);
@@ -152,6 +155,13 @@ $(function() { // jQuery
         var c = prompt("Enter your city", "Bratislava");
         weatherByCity(c);
       }
+    }).fail(function() {
+      console.log("error");
+    }).always(function() {
+      console.log("complete");
+    });
+    geoW.complete(function() {
+      console.log("second complete");
     });
 
   }
@@ -167,7 +177,7 @@ $(function() { // jQuery
     console.log("wind deg " + w.wind.deg + " speed " + w.wind.speed);
     console.log(status + " " + w.name);
     console.log(status + " " + w.main.temp);
-    var windDeg = w.wind.deg ;
+    var windDeg = w.wind.deg;
     $('#iconT').removeClass();
     var t12 = new Date().getHours();
     if (new Date().getHours() > 12) {
@@ -175,7 +185,6 @@ $(function() { // jQuery
     }
     console.log(new Date().getHours());
     console.log("t12 " + t12);
-
 
     $('#iconT').addClass("wi wi-time-" + t12);
     $('#time').find("i").remove();
@@ -237,57 +246,62 @@ $(function() { // jQuery
     ur12: false
   };
 
-
-
   function getIcon(id) {
     switch (id) {
-      case 800 : console.log("800");
+      case 800:
+        console.log("800");
         return 'wi wi-day-sunny';
         break;
-      case 801 : console.log("801");
+      case 801:
+        console.log("801");
         return 'wi wi-day-cloudy';
         break;
-      case 802 : console.log("802");
+      case 802:
+        console.log("802");
         return 'wi wi-cloudy';
         break;
-      case 803 : console.log("803");
+      case 803:
+        console.log("803");
         return 'wi wi-cloudy-gusts';
         break;
-      case 804 : console.log("803");
+      case 804:
+        console.log("803");
         return 'wi wi-cloudy-gusts';
         break;
-      case 521 : console.log("521");
+      case 521:
+        console.log("521");
         return 'wi wi-showers';
         break;
-      case 500 :
+      case 500:
         return 'wi wi-rain';
         break;
-      case 501 :
+      case 501:
         return 'wi wi-rain';
         break;
-      case 502 :
+      case 502:
         return 'wi wi-rain';
         break;
-      case 503 :
+      case 503:
         return 'wi wi-rain';
         break;
-      case 504 :
+      case 504:
         return 'wi wi-rain';
         break;
-      case 211 :
+      case 211:
         return 'wi wi-thunderstorm';
         break;
-      case 601 :
+      case 601:
         return 'wi wi-snow';
         break;
-      case 701 :
+      case 701:
         return 'wi wi-fog';
         break;
-      default : return 'wi wi-day-fog';
+      default:
+        return 'wi wi-day-fog';
     }
   }
 
-  // farenhait to celsius convert or reverse
+  // farenhait to celsius convert or reverse API
   $('#fc').click(function() {
     console.log("1" + units);
     if (units === "metric") {
@@ -301,5 +315,6 @@ $(function() { // jQuery
       getLocation();
       console.log("2" + units);
     }
-  })
+  });
+
 }) // jQuery end
