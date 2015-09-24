@@ -22,12 +22,15 @@ $(function() { // jQuery
   // F -> C recalcualte
   // c = (f-32) *5/9
   // f = c* 9/5 +32
-  function metricToImperial() {
+  function metricToImperial(c) {
     // f = c* 9/5 +32
+    console.log("mTi :" + c);
+    return Math.round((c * (9 / 5) + 32) * 1) / 1;
   }
 
-  function imperialToMetric() {
+  function imperialToMetric(f) {
     // c = (f-32) *5/9
+    return Math.round(((f - 32) * (5 / 9)) * 1) / 1;
   }
 
   function locationIP() {
@@ -190,10 +193,12 @@ $(function() { // jQuery
     $('#time').find("i").remove();
     $('#time').text(new Date(w.dt * 1000).toLocaleDateString("sk-sk", options)); // milisec to sec
 
-    $('#temp').text(w.main.temp);
+    $('#temp>span').text(Math.round(Number(w.main.temp) * 1) / 1);
     if (units === "metric") {
+      $('#temp>i').remove();
       $('#temp').append("<i class='wi wi-celsius'></i>");
     } else {
+      $('#temp>i').remove();
       $('#temp').append("<i class='wi wi-fahrenheit'></i>");
     }
     $('#city').text(w.name);
@@ -302,6 +307,7 @@ $(function() { // jQuery
   }
 
   // farenhait to celsius convert or reverse API
+
   $('#fc').click(function() {
     console.log("1" + units);
     if (units === "metric") {
@@ -317,4 +323,22 @@ $(function() { // jQuery
     }
   });
 
-}) // jQuery end
+  $('#fcCalc').click(function() {
+
+    var u = $('#temp > i').hasClass("wi-celsius");
+    if (u) {
+      $('#temp>span').text(metricToImperial(Number($('#temp>span').text())));
+      $('#temp>i').remove();
+      $('#temp').append("<i class='wi wi-fahrenheit'></i>");
+
+    } else {
+
+      $('#temp>span').text(imperialToMetric(Number($('#temp>span').text())));
+      $('#temp>i').remove();
+      $('#temp').append("<i class='wi wi-celsius'></i>");
+    }
+  });
+
+})
+
+// jQuery end
