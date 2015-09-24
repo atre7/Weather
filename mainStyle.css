@@ -82,8 +82,8 @@ i {
   display: block;
   margin: 10px auto;
   width: 100%;
-  opacity: 0.6;
-  font-size: 2em;
+  opacity: 0.8;
+  font-size: 1em;
   letter-spacing: 3px;
 }
 #fc:hover, #fc:focus {

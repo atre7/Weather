@@ -181,7 +181,6 @@ $(function() { // jQuery
     weekday: 'long',
     hour: 'numeric',
     minute: 'numeric',
-    second: 'numeric',
     ur12: false
   };
 
